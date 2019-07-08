@@ -93,6 +93,19 @@ teleop.vi - the swerve code is actually pretty straightforward since most of the
 	lifting is done in the "swerve xxx" code. Actual access to the hardware is done
 	here so update the motor controller "set" functions as necessary. 
 
+Be careful
+----------
+When looking at the code, be aware of the units and their range. 
+- units don't matter on the robot wheelbase dimensions.
+- encoder values are in counts when setting and getting. This is why you need the gear
+ratio to convert to whole wheel rotations. Also remember that quad encoders don't reset
+after a full turn in either direction; they just keep couting up or down.
+- wheel speed range is from -1 to +1.
+- wheel steering is usually in degrees but the trig math is usually in radians so converting
+is important (see Swerve Math.vi). 
+- be sure to understand the angular range at different parts of the code. For example, 
+when first computed, angles are 0 to 180 but after optimizations, they are -90 to + 90
+
 Feedback
 --------
 Contact Team 4048 (Redshift) at info@team4048.org
